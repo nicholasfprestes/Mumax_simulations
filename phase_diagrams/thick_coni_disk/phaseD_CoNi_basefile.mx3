@@ -5,12 +5,14 @@ setgeom(circle(500e-9))
 //
 
 //Phase diagram parameters
+B := -163.0e-3
 ia := 0 //Inital angle (degrees)
 fa := 3 //Final angle (degrees)
 astep := 5 //Angle step
 ic := 30.0 // x10^(11) initial current amplitude
 fc := 32.0 // x10^(11) final current amplitude
-fc := 5.0 // x10^(11) current step
+cstep := 5.0 // x10^(11) current step
+//
 
 //Material Definitions
 Msat = 540e3
@@ -18,7 +20,6 @@ Aex  = 1e-11
 anisU = vector(0,0,1)
 Ku1 = 657e3
 Dind = 1.2e-3
-B := -163.0e-3
 //
 
 //Current Definitions
@@ -46,8 +47,8 @@ relax()         // high-energy states best minimized by relax()
 //
 
 //Phase diagram simulation
-for angle := -90; angle <= 90; angle += 5{
-	for n := 30; n <= 60; n += 2{
+for angle := ia; angle <= fa; angle += astep{
+	for n := ic; n <= fc; n += cstep{
 		// 5 degrees of axis in plane field to avoid artifical symmetry
 		B_ext = vector(B * cos(angle * pi/180), B * sin(angle * pi/180), 0)
 		tau := -t //modifier of t pulse will work each time
