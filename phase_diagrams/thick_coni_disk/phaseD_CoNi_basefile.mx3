@@ -1,7 +1,16 @@
+//Geometry Definitions
 SetGridsize(256, 256, 2)
 SetCellsize(500e-9/256, 500e-9/256, 2e-9)
-
 setgeom(circle(500e-9))
+//
+
+//Phase diagram parameters
+ia := 0 //Inital angle (degrees)
+fa := 3 //Final angle (degrees)
+astep := 5 //Angle step
+ic := 30.0 // x10^(11) initial current amplitude
+fc := 32.0 // x10^(11) final current amplitude
+fc := 5.0 // x10^(11) current step
 
 //Material Definitions
 Msat = 540e3
