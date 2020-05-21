@@ -1,0 +1,8 @@
+# Ignore ALL
+*.*
+# Except
+!*.mx3
+
+# Maybe this works
+#*.out
+
