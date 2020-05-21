@@ -1,40 +1,42 @@
-SetGridsize(256, 256, 1)
-SetCellsize(500e-9/256, 500e-9/256, 1e-9)
+SetGridsize(256, 256, 2)
+SetCellsize(500e-9/256, 500e-9/256, 2e-9)
 
 setgeom(circle(500e-9))
 
-Msat = 900e3
+//Material Definitions
+Msat = 540e3
 Aex  = 1e-11
 anisU = vector(0,0,1)
 Ku1 = 657e3
 Dind = 1.2e-3
-B := -100e-3
+B := -163.0e-3
+//
 
-
-
+//Current Definitions
 alpha = 0.5
 Pol = 0.054694
 xi = 0
 lambda       = 1
 epsilonprime = 0.00683675
 fixedlayer = vector(0, -1, 0) //polarization in y direction, J in z direction gives SOT conditions
+//
 
-//lambda1 epsilonprime0,7 pol1 For these configs reversal happens at 11E11
 
+
+//Save information
 Kc3 = 0
-// saved information
 tableadd(B_ext)
 tableadd(J)
 tableadd(B_demag)
 tableadd(Kc3)
 //AutoSave(m, 20e-9)
 
-
+//Initialize the system
 m = uniform(0,0,-1)
 relax()         // high-energy states best minimized by relax()
+//
 
-
-
+//Phase diagram simulation
 for angle := -90; angle <= 90; angle += 5{
 	for n := 30; n <= 60; n += 2{
 		// 5 degrees of axis in plane field to avoid artifical symmetry
