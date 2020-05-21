@@ -1,0 +1,66 @@
+SetGridsize(256, 256, 1)
+SetCellsize(500e-9/256, 500e-9/256, 1e-9)
+
+setgeom(circle(500e-9))
+
+Msat = 900e3
+Aex  = 1e-11
+anisU = vector(0,0,1)
+Ku1 = 657e3
+Dind = 1.2e-3
+B := -100e-3
+
+
+
+alpha = 0.5
+Pol = 0.054694
+xi = 0
+lambda       = 1
+epsilonprime = 0.00683675
+fixedlayer = vector(0, -1, 0) //polarization in y direction, J in z direction gives SOT conditions
+
+//lambda1 epsilonprime0,7 pol1 For these configs reversal happens at 11E11
+
+Kc3 = 0
+// saved information
+tableadd(B_ext)
+tableadd(J)
+tableadd(B_demag)
+tableadd(Kc3)
+//AutoSave(m, 20e-9)
+
+
+m = uniform(0,0,-1)
+relax()         // high-energy states best minimized by relax()
+
+
+
+for angle := -90; angle <= 90; angle += 5{
+	for n := 30; n <= 60; n += 2{
+		// 5 degrees of axis in plane field to avoid artifical symmetry
+		B_ext = vector(B * cos(angle * pi/180), B * sin(angle * pi/180), 0)
+		tau := -t //modifier of t pulse will work each time
+		J = vector(0, 0, n*pow10(11) * ((t + tau) / 80e-12))
+		run(80e-12)
+		// 5 ns write pulse total (includes rising edge of pulse)
+		J = vector(0, 0, n*pow10(11))
+		run(4.92e-9)
+		// relax time necessary for certain switching
+		J = vector(0, 0, 0)
+		run(5e-9)
+		// Set-up variables to save
+		J = vector(0, 0, n*pow10(11))
+		Kc3 = angle
+		tablesave()
+		// reset variables
+		J = vector(0, 0, 0)
+		Kc3 = 0
+		//reset to initial condition
+		B_ext = vector(0, 0, 0)
+		m = uniform(0, 0, -1)
+		relax()
+	}
+}
+
+
+
