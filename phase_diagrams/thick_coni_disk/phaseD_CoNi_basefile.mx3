@@ -45,6 +45,7 @@ tableadd(Kc3)
 m = uniform(0,0,-1)
 relax()         // high-energy states best minimized by relax()
 //
+//test
 
 //Phase diagram simulation
 for angle := ia; angle <= fa; angle += astep{
