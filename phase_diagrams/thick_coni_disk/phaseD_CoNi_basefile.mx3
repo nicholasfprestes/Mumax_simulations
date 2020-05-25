@@ -9,9 +9,9 @@ B := -163.0e-3
 ia := 0 //Inital angle (degrees)
 fa := 3 //Final angle (degrees)
 astep := 5 //Angle step
-ic := 30.0 // x10^(11) initial current amplitude
-fc := 32.0 // x10^(11) final current amplitude
-cstep := 5.0 // x10^(11) current step
+ic := 3000.0 // x10^(11) initial current amplitude
+fc := 3200.0 // x10^(11) final current amplitude
+cstep := 500.0 // x10^(11) current step
 //
 
 //Material Definitions
@@ -45,7 +45,7 @@ tableadd(Kc3)
 m = uniform(0,0,-1)
 relax()         // high-energy states best minimized by relax()
 //
-//test
+
 
 //Phase diagram simulation
 for angle := ia; angle <= fa; angle += astep{

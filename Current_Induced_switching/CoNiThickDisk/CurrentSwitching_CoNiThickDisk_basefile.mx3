@@ -1,0 +1,80 @@
+//Geometry Definitions
+SetGridsize(256, 256, 2)
+SetCellsize(500e-9/256, 500e-9/256, 2e-9)
+setgeom(circle(500e-9))
+//
+
+//Phase diagram parameters
+B := -163.0e-3
+ia := 0 //Inital angle (degrees)
+fa := 3 //Final angle (degrees)
+astep := 5 //Angle step
+ic := 3000.0 // x10^(11) initial current amplitude
+fc := 1300.0 // x10^(11) final current amplitude
+cstep := 2000.0 // x10^(11) current step
+//
+
+//Material Definitions
+Msat = 540e3
+Aex  = 1e-11
+anisU = vector(0,0,1)
+Ku1 = 657e3
+Dind = 1.2e-3
+//
+
+//Current Definitions
+alpha = 0.5
+Pol = 0.054694
+xi = 0
+lambda       = 1
+epsilonprime = 0.00683675
+fixedlayer = vector(0, -1, 0) //polarization in y direction, J in z direction gives SOT conditions
+//
+
+
+
+//Save information
+Kc3 = 0
+tableadd(B_ext)
+tableadd(J)
+tableadd(B_demag)
+//tableadd(Kc3)
+//AutoSave(m, 20e-9)
+AutoSave(m, 1e-9)
+
+//Initialize the system
+m = uniform(0,0,-1)
+relax()         // high-energy states best minimized by relax()
+//
+
+
+//Phase diagram simulation
+
+for n := ic; n <= fc; n += cstep{
+	// 5 degrees of axis in plane field to avoid artifical symmetry
+	B_ext = vector(B * cos(angle * pi/180), B * sin(angle * pi/180), 0)
+	tau := -t //modifier of t pulse will work each time
+	J = vector(0, 0, n*pow10(11) * ((t + tau) / 80e-12))
+	run(80e-12)
+	// 5 ns write pulse total (includes rising edge of pulse)
+	J = vector(0, 0, n*pow10(11))
+	run(4.92e-9)
+	// relax time necessary for certain switching
+	J = vector(0, 0, 0)
+	run(5e-9)
+	// Set-up variables to save
+	//J = vector(0, 0, n*pow10(11))
+	//Kc3 = angle
+	//tablesave()
+	// reset variables
+	//J = vector(0, 0, 0)
+	//Kc3 = 0
+	//reset to initial condition
+	B_ext = vector(0, 0, 0)
+	m = uniform(0, 0, -1)
+	relax()
+}
+
+
+
+
