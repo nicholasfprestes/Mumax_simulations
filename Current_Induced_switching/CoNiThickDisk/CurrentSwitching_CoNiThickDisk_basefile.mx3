@@ -21,7 +21,7 @@ angle := 0.0
 //Aex  = 1e-11
 //anisU = vector(0,0,1)
 //Ku1 = 657e3
-/Dind = 1.2e-3
+//Dind = 1.2e-3
 //
 
 //Setting parameters
