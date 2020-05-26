@@ -9,9 +9,9 @@ B := -163.0e-3
 ia := 0 //Inital angle (degrees)
 fa := 3 //Final angle (degrees)
 astep := 5 //Angle step
-ic := 3000.0 // x10^(11) initial current amplitude
-fc := 13000.0 // x10^(11) final current amplitude
-cstep := 2000.0 // x10^(11) current step
+ic := 500.0 // x10^(11) initial current amplitude
+fc := 1000.0 // x10^(11) final current amplitude
+cstep := 200.0 // x10^(11) current step
 angle := 0.0
 //
 
@@ -41,7 +41,7 @@ tableadd(J)
 tableadd(B_demag)
 //tableadd(Kc3)
 //AutoSave(m, 20e-9)
-AutoSave(m, 1e-9)
+TableAutoSave(1e-12)
 
 //Initialize the system
 m = uniform(0,0,-1)
