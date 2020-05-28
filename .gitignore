@@ -2,6 +2,7 @@
 *.*
 # Except
 !*.mx3
+!.md
 
 # Maybe this works
 #*.out
