@@ -9,9 +9,9 @@ B := -163.0e-3
 ia := -60 //Inital angle (degrees)
 fa := 60 //Final angle (degrees)
 astep := 20 //Angle step
-ic := 720.0 // x10^(11) initial current amplitude
-fc := 860.0 // x10^(11) final current amplitude
-cstep := 20.0 // x10^(11) current step
+ic := 300.0 // x10^(11) initial current amplitude
+fc := 1000.0 // x10^(11) final current amplitude
+cstep := 100.0 // x10^(11) current step
 //
 
 //Material Definitions
