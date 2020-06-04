@@ -5,9 +5,9 @@ setgeom(circle(500e-9))
 //
 
 //Phase diagram parameters
-B := -163.0e-3
-ia := -90 //Inital angle (degrees)
-fa := 90 //Final angle (degrees)
+B := 163.0e-3
+ia := 90 //Inital angle (degrees)
+fa := 270 //Final angle (degrees)
 astep := 30 //Angle step
 ic := 50.0 // x10^(11) initial current amplitude
 fc := 250.0 // x10^(11) final current amplitude
