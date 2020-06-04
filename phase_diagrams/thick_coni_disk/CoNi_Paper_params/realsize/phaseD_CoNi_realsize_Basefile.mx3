@@ -1,17 +1,17 @@
 //Geometry Definitions
-SetGridsize(256, 256, 2)
+SetGridsize(1024, 1024, 2)
 SetCellsize(500e-9/256, 500e-9/256, 2e-9)
-setgeom(circle(500e-9))
+setgeom(circle(2e-6))
 //
 
 //Phase diagram parameters
 B := 163.0e-3
 ia := 90 //Inital angle (degrees)
 fa := 270 //Final angle (degrees)
-astep := 30 //Angle step
+astep := 5 //Angle step
 ic := 50.0 // x10^(11) initial current amplitude
 fc := 250.0 // x10^(11) final current amplitude
-cstep := 50.0 // x10^(11) current step
+cstep := 25.0 // x10^(11) current step
 //
 
 //Material Definitions
@@ -27,7 +27,7 @@ alpha = 0.5
 Pol = 0.054694
 xi = 0
 lambda       = 1
-epsilonprime = -0.027347
+epsilonprime = 0.0 //0.027347
 fixedlayer = vector(0, -1, 0) //polarization in y direction, J in z direction gives SOT conditions
 //
 
